@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+    <title>Hello, world!</title>
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/8e326d89e3.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <form class="form-inline my-2 mx-0 my-lg-0 " id="search">
+            <input class="form-control mr-sm-2 w-75" type="search" placeholder="Search" aria-label="Search">
+        </form>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto ">
+                <li class="nav-item" id="home">
+                    <a class="nav-link" href="#">Browse Events</a>
+                </li>
+
+                <li class="nav-item dropdown" id="d1">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Host an Event
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown" id="d2">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Help
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+
+                <a href="#">
+                    <li class="nav-item dropdown" id=d3>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="/static/Profile.png" width="30" height="30" class="d-inline-block align-top"
+                                alt="">
+                            vaibhavs828@gmail.com
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                </a>
+
+            </ul>
+
+        </div>
+    </nav>
+
+
+    <div class="container content">
+        <span id="likes">Likes</span>
+        <div class="events p-2 m-2 my-3">
+
+            {% for i in ignis %}
+
+            <div class="card">
+                <div class="card-body">
+                    <p style="float: left;" class="pr-4"><img src="/media/{{i.image}}" width="150" height="100"
+                            alt="No Image Available"></p>
+                    <h5 class="card-title">{{i.event_name}}</h5>
+                    <p class="card-text" id="dt">{{i.date}} | {{i.time}}</p>
+                    <!--Heart-->
+                    <!--<form action="/index/" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn" name="heart" value="on"> -->
+                        <i onclick="Toggle()" class="far fa-heart" id="heart" ></i>
+                        <!--</button> 
+                    </form>-->
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!--JS for heart-->
+    <script>
+        var heart = document.getElementById('heart');
+
+        function Toggle() {
+            if (heart.classList.contains("far")) {
+                heart.classList.remove("far");
+                heart.classList.add("fas");
+            }
+            else {
+                heart.classList.remove("fas");
+                heart.classList.add("far");
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
